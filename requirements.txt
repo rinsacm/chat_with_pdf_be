@@ -1,0 +1,7 @@
+langchain
+langchain-openai
+langchain-community
+flask
+flask-cors
+pypdf
+faiss-cpu
