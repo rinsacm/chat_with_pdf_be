@@ -5,3 +5,4 @@ flask
 flask-cors
 pypdf
 faiss-cpu
+gunicorn
