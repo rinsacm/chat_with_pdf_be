@@ -69,7 +69,12 @@ def create_pdf_vector_store_and_qachain(pdf_path):
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 CORS(app)
-
+def create_directory_if_not_exists(dir_path):
+    try:
+        os.makedirs(dir_path, exist_ok=True)
+        print(f"Directory created or already exists: {dir_path}")
+    except Exception as e:
+        print(f"Error creating directory: {e}")
 
 @app.route('/upload', methods=['POST'])
 def upload_pdf():
@@ -83,6 +88,7 @@ def upload_pdf():
         return jsonify({"error": "No selected file"}), 400
 
     # Save the file temporarily
+    create_directory_if_not_exists('uploads')
     pdf_path = os.path.join('uploads', file.filename)
     file.save(pdf_path)
 
